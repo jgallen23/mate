@@ -3,7 +3,7 @@
 		<title></title>
 		<script src="live.js"></script>
 		<script src="jquery-1.6.4.min.js"></script>
-		<script src="../lib/anim.js"></script>
+		<script src="../lib/mate.js"></script>
 		<style>
 			div { width: 50px; height: 50px; background: #000; opacity: 1}
 		</style>
@@ -14,33 +14,34 @@
 		<div id="div3"></div>
 		<div id="div4"></div>
 		<script>
-			mate()
-				/*	
-				.with('div1')
-					.do('MozTransform', 'scale(1.1)')
-					.do('opacity', '.5')
-				.with('div2')
-					.delay(1000)
-					.do('opacity', '.3')
-					*/
-				.with('div3')
-					.repeat()
-					.ease('ease-in-out')
-					.do('transform', 'translateX(100px)')
-					.then()
-					.do('opacity', 0.5)
-					.then()
-					.do('transform', 'translateX(0px)')
-					.then()
-					.do('opacity', 1.0)
-					/*
-				.with('div4')
-					.do('MozTransform', 'rotate(45deg)')
-					.then()
-					.do('MozTransform', 'rotate(-45deg)')
-					.repeat()
-					*/
-				.run();
+			var m = mate()
+				.use('div1')
+					.scale(1.1)
+					.opacity(.5)
+				.at(2000)
+					.use('div2')
+						.opacity(.3)
+					.use('div3')
+						.repeat()
+						.ease('ease-in-out')
+						//.anim('transform', 'translateX(100px)')
+						.translate('100px', 0)
+						.then()
+						.anim('opacity', 0.5)
+						.then()
+						.translate('0px', '0px')
+						.then()
+						.anim('opacity', 1.0)
+				.at(4000)
+					.use('div4')
+						.repeat()
+						.rotate('45deg')
+						.then()
+						.anim('transform', 'rotate(-45deg)')
+				.run(function() {
+					console.log("all animne");
+				});
+				console.log(m);
 		</script>
 	</body>
 </html>

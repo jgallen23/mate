@@ -18,7 +18,7 @@ var transitionEndEvent = {
 };
 
 var select = function(str) {
-  return document.getElementById(str);
+  return (typeof str === 'string')?document.getElementById(str):str;
 };
 
 var getVendorPrefix = function() {
@@ -29,7 +29,7 @@ var getVendorPrefix = function() {
     return "-moz-";
   return "";
 };
-var prefix = this.getVendorPrefix();
+var prefix = getVendorPrefix();
 
 var Animation = function(el) {
   this.el = el;
